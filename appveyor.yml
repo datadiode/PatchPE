@@ -1,0 +1,18 @@
+version: 1.0.{build}
+image: Visual Studio 2019
+
+configuration:
+  - DebugL
+  - ReleaseL
+
+platform:
+  - x86
+
+build_script:
+  - C:/msys64/usr/bin/wget.exe -nv "https://downloads.dlang.org/releases/2.x/2.108.1/dmd-2.108.1.exe"
+  - start /wait dmd-2.108.1.exe /S
+  - msbuild /t:Rebuild /p:Platform="%PLATFORM%" /p:Configuration="%CONFIGURATION%" PatchPE.sln
+  - for /f %%v IN ('git describe') DO 7z a -r %APPVEYOR_PROJECT_NAME%_%CONFIGURATION%_%PLATFORM%_%%v.7z %PLATFORM%\%CONFIGURATION%
+
+artifacts:
+  - path: $(APPVEYOR_PROJECT_NAME)_$(configuration)_$(platform)_v*.7z
