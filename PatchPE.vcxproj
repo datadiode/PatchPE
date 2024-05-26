@@ -116,7 +116,9 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseL|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Label="UserMacros">
+    <DMD>$(registry:HKEY_LOCAL_MACHINE\SOFTWARE\DMD@InstallationFolder)</DMD>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(PlatformShortName)\$(Configuration)\</OutDir>
@@ -188,8 +190,9 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>lib$(PlatformArchitecture)\msvcrt.lib;lib$(PlatformArchitecture)\oldnames.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>mingw\msvcrt.lib;mingw\oldnames.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/alternatename:__initterm_e=_fcloseall %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalLibraryDirectories>$(DMD)\dmd2\windows\lib32mscoff</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -222,8 +225,9 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>lib$(PlatformArchitecture)\msvcrt.lib;lib$(PlatformArchitecture)\oldnames.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>mingw\msvcrt.lib;mingw\oldnames.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/alternatename:_initterm_e=_fcloseall %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalLibraryDirectories>$(DMD)\dmd2\windows\lib64</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -255,8 +259,9 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>lib$(PlatformArchitecture)\msvcrt.lib;lib$(PlatformArchitecture)\oldnames.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>mingw\msvcrt.lib;mingw\oldnames.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/alternatename:__initterm_e=_fcloseall %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalLibraryDirectories>$(DMD)\dmd2\windows\lib32mscoff</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -288,8 +293,9 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>lib$(PlatformArchitecture)\msvcrt.lib;lib$(PlatformArchitecture)\oldnames.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>mingw\msvcrt.lib;mingw\oldnames.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/alternatename:_initterm_e=_fcloseall %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalLibraryDirectories>$(DMD)\dmd2\windows\lib64</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
